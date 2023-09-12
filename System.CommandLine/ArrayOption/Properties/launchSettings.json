@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ArgParser": {
+      "commandName": "Project",
+      "commandLineArgs": "\"session-dev\" -s \"dotnet coverage collect -id wpfapp-session -sv\" -e \"dotnet coverage shutdown wpfapp-session\" -t:10;\"cmd1 arg1 arg2\" -t:5;\"\\\"path 2 cmd2\\\" arg1; arg2\""
+    }
+  }
+}

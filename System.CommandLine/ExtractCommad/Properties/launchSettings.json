@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TestExtractCommad": {
+      "commandName": "Project",
+      "commandLineArgs": "\"\\\"c:\\\\path to space\\a.exe\\\" arg1 arg2\""
+    }
+  }
+}
