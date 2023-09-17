@@ -1,5 +1,5 @@
-﻿using System.CommandLine.NamingConventionBinder;
-using System.CommandLine;
+﻿using System.CommandLine;
+using System.CommandLine.NamingConventionBinder;
 
 namespace ArrayOption;
 
@@ -48,20 +48,38 @@ internal class Program
     {
         foreach (var str in timer)
         {
+            if (TryParseTimerArgument(str, out (int, string)? result))
+            {
+                Console.WriteLine($"second={result!.Value.Item1},command={result!.Value.Item2}");
+            }
+        }
+        return 0;
+    }
+
+    private static bool TryParseTimerArgument(string str, out (int second, string command)? result)
+    {
+        result = null;
+        try
+        {
             int firstSemicolonIndex = str.IndexOf(';');
 
             if (firstSemicolonIndex >= 0)
             {
                 if (int.TryParse(str[..firstSemicolonIndex], out int second))
                 {
-                    string part2 = str[(firstSemicolonIndex + 1)..];
+                    string command = str[(firstSemicolonIndex + 1)..];
+                    result = (second, command);
+                    return true;
                 }
                 else
-                    throw new ArgumentException(nameof(timer));
+                    return false;
             }
             else
-                throw new ArgumentException(nameof(timer));
+                return false;
         }
-        return 0;
+        catch
+        {
+            return false;
+        }
     }
 }
