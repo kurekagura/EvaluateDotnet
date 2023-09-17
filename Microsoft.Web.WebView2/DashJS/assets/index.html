@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Dash.js on WebView2 WPF</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        video {
+            width: 90%;
+            height: 90%;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <video data-dashjs-player autoplay src="https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd" controls>
+        </video>
+    </div>
+    <script src="./dash.all.min.js"></script>
+</body>
+</html>
