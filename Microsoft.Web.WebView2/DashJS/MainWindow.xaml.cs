@@ -31,11 +31,18 @@ namespace DashJS
             // リクエストのフィルタを作成し、HTTP-GETリクエストをフックする
             webView.CoreWebView2.AddWebResourceRequestedFilter("*", CoreWebView2WebResourceContext.All);
             webView.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
+
+            //webView.CoreWebView2.OpenDevToolsWindow();
         }
 
         private void CoreWebView2_WebResourceRequested(object? sender, CoreWebView2WebResourceRequestedEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine(e.Request.Uri);
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

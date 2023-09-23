@@ -9,11 +9,15 @@
 
   <ItemGroup>
     <None Remove="assets\dash.all.min.js" />
+    <None Remove="assets\favicon.ico" />
     <None Remove="assets\index.html" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="assets\dash.all.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="assets\favicon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="assets\index.html">

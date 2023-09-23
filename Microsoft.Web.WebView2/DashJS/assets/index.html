@@ -25,9 +25,51 @@
 </head>
 <body>
     <div>
-        <video data-dashjs-player autoplay src="https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd" controls>
-        </video>
+        <input id="totalTimeInput" type="time" value="00:00">
+    </div>
+        <div>
+        <video id="video" data-dashjs-player controls autoplay muted="muted"></video>
     </div>
     <script src="./dash.all.min.js"></script>
+    <script>
+        const videoElement = document.getElementById('video');
+        const totalTimeInput = document.getElementById('totalTimeInput');
+        let totalDuration = 0;
+
+        const player = dashjs.MediaPlayer().create();
+
+        player.initialize(videoElement, null, true);
+
+        // Listen for 'loadedmetadata' event to get the total duration of the video
+        videoElement.addEventListener('loadedmetadata', () => {
+            totalDuration = videoElement.duration;
+            const formattedTime = formatTime(totalDuration);
+            totalTimeInput.value = formattedTime;
+        });
+
+        // Listen for changes in the totalTimeInput
+        totalTimeInput.addEventListener('change', () => {
+            const inputTime = totalTimeInput.value;
+            const [minutes, seconds] = inputTime.split(':').map(Number);
+            const targetTime = minutes * 60 + seconds;
+
+            // Check if the entered time is within the valid range
+            if (targetTime <= totalDuration) {
+                videoElement.currentTime = targetTime;
+            } else {
+                totalTimeInput.value = formatTime(totalDuration);
+            }
+        });
+
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainingSeconds = Math.floor(seconds % 60);
+            const formattedMinutes = String(minutes).padStart(2, '0');
+            const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+            return `${formattedMinutes}:${formattedSeconds}`;
+        }
+
+        player.attachSource('https://dash.akamaized.net/envivio/EnvivioDash3/manifest.mpd');
+    </script>
 </body>
 </html>
