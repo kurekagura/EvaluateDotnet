@@ -18,8 +18,8 @@ https://github.com/microsoft/Windows-driver-samples/tree/main/filesys/miniFilter
 
 変更の原因となったプロセス情報の取得。例えば、特定のアプリケーションによって実行された変更を無視するために、誰が変更を引き起こしたのかを知ることができる。すべてのイベントの原因となったプロセスIDを知ることができ、さらに自身のプロセスIDによって引き起こされたすべてのイベントを直接フィルタリングできる。
 
-## 課題
+## 動作確認
 
-動作確認できていません。
+[Installing the kernel mode driver](https://github.com/CenterDevice/MiniFSWatcher#installing-the-kernel-mode-driver)にあるとおり、カーネルドライバのインストールが必要です。
 
-[Installing the kernel mode driver](https://github.com/CenterDevice/MiniFSWatcher#installing-the-kernel-mode-driver)にあるとおり、カーネルドライバのインストールが必要のようです。
+[こちら](./setup.md)を参照してください。
