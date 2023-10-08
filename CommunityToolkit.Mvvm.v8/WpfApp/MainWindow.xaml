@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         xmlns:vm="clr-namespace:WpfApp.ViewModels"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" d:DataContext="{d:DesignInstance Type=vm:DrivesViewModel}"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        d:DataContext="{d:DesignInstance Type=vm:DrivesViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
@@ -15,18 +16,17 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <ComboBox Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"
+        <ComboBox x:Name="cb1"  Grid.Row="0" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Center"
                   ItemsSource="{Binding Path=Drives}"
                   DisplayMemberPath="Letter"
-                  SelectedValuePath="Letter"
-                  SelectedIndex="{Binding Path=CurrentIndex}"
-                 >
+                  SelectedIndex="{Binding CurrentIndex}">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="Loaded">
                     <i:InvokeCommandAction Command="{Binding GetDriversCommand}" />
                 </i:EventTrigger>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <i:InvokeCommandAction Command="{Binding SelectedDriverChangedCommand}" />
+                    <i:InvokeCommandAction Command="{Binding SelectedDriverChangedCommand}"
+                                           CommandParameter="{Binding ElementName=cb1, Path=SelectedItem}"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ComboBox>

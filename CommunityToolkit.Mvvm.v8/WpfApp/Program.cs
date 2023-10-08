@@ -42,6 +42,7 @@ public class Program
             serviceCollection.AddSingleton<App>();
             serviceCollection.AddSingleton<MainWindow>();
             serviceCollection.AddSingleton<IDriveService, DriveService>();
+            serviceCollection.AddSingleton<IFileSystemService, FileSystemService>();
             serviceCollection.AddTransient<DrivesViewModel>();
         });
         IHost host = hostBuilder.Build();

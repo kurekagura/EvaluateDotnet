@@ -1,17 +1,21 @@
 ﻿using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using WpfApp.Models;
 using WpfApp.Services;
+using SIO = System.IO;
 
 namespace WpfApp.ViewModels;
 
 public partial class DrivesViewModel : ObservableObject
 {
     private IDriveService _driveSvc { get; }
+    private IFileSystemService _fsSvc { get; }
 
-    public DrivesViewModel(IDriveService driveService)
+    public DrivesViewModel(IDriveService driveService, IFileSystemService fileSystemService)
     {
         _driveSvc = driveService;
+        _fsSvc = fileSystemService;
     }
 
     //バッキングフィールド => Drivers が生成される
@@ -35,7 +39,11 @@ public partial class DrivesViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public void SelectedDriverChanged()
+    public async Task SelectedDriverChanged(DriveInfo currentItem)
     {
+        if (currentItem.DriveType != SIO::DriveType.Unknown)
+        {
+            var items = await _fsSvc.GetFileSystemAsync(currentItem.Letter);
+        }
     }
 }
