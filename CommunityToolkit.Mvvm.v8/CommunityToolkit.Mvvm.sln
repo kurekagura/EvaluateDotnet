@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp", "WpfApp\WpfApp.csproj", "{50902320-C33C-4DF3-BD2E-A673CB7B6865}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfApp", "WpfApp\WpfApp.csproj", "{50902320-C33C-4DF3-BD2E-A673CB7B6865}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BindDict", "BindDict\BindDict.csproj", "{77E89C1F-A172-402F-B252-894C27F26B26}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{50902320-C33C-4DF3-BD2E-A673CB7B6865}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50902320-C33C-4DF3-BD2E-A673CB7B6865}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50902320-C33C-4DF3-BD2E-A673CB7B6865}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77E89C1F-A172-402F-B252-894C27F26B26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77E89C1F-A172-402F-B252-894C27F26B26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77E89C1F-A172-402F-B252-894C27F26B26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77E89C1F-A172-402F-B252-894C27F26B26}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
