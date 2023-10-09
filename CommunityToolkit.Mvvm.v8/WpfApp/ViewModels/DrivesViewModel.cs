@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using WpfApp.Models;
@@ -21,7 +23,7 @@ public partial class DrivesViewModel : ObservableObject
     //バッキングフィールド => Drivers が生成される
     //オブジェクト参照を設定しておく必要がある
     [ObservableProperty]
-    private System.Collections.Generic.List<WpfApp.Models.DriveInfo> _drives = new();
+    private ObservableCollection<WpfApp.Models.DriveInfo> _drives = new();
 
     [ObservableProperty]
     private int? _currentIndex = null;
@@ -30,6 +32,7 @@ public partial class DrivesViewModel : ObservableObject
     [RelayCommand]
     public async Task GetDrivers()
     {
+        Drives.Add(new DriveInfo() { Letter = "All Drives" });
         foreach (Models.DriveInfo di in await _driveSvc.GetDrivesAsync())
         {
             Drives.Add(di);
@@ -38,12 +41,32 @@ public partial class DrivesViewModel : ObservableObject
             CurrentIndex = 0;
     }
 
+    [ObservableProperty]
+    private ObservableCollection<KeyValuePair<string, SIO::FileSystemInfo>> _fileSystems = new();
+
+    [ObservableProperty]
+    private ObservableCollection<DriveInfo> _drivesList = new();
+
     [RelayCommand]
     public async Task SelectedDriverChanged(DriveInfo currentItem)
     {
-        if (currentItem.DriveType != SIO::DriveType.Unknown)
+        if (currentItem.DriveType == SIO::DriveType.Unknown)
         {
-            var items = await _fsSvc.GetFileSystemAsync(currentItem.Letter);
+            //ドライブ一覧ビュー用
+            DrivesList.Clear();
+            foreach (var drive in await _driveSvc.GetDrivesAsync())
+            {
+                DrivesList.Add(drive);
+            }
+        }
+        else if (currentItem.DriveType != SIO::DriveType.Unknown)
+        {
+            //ファイル・フォルダ一覧ビュー用
+            FileSystems.Clear();
+            foreach (var item in await _fsSvc.GetFileSystemAsync(currentItem.Letter))
+            {
+                FileSystems.Add(new(item.Name, item));
+            }
         }
     }
 }

@@ -13,6 +13,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -30,6 +31,32 @@
                 </i:EventTrigger>
             </i:Interaction.Triggers>
         </ComboBox>
-        <TextBlock Grid.Row="1" Text="Items" Background="DarkGray"/>
+        <ListView Grid.Row="1" HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding DrivesList}" Height="Auto">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Letter}" />
+                        <TextBlock Text="{Binding DriveType}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView Grid.Row="2" HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding FileSystems}" Height="Auto">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Value.Name}" />
+                        <TextBlock Text="{Binding Value.CreationTimeUtc}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Window>
