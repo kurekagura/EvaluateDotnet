@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EvalCsvHelper", "EvalCsvHelper\EvalCsvHelper.csproj", "{700F90AB-7132-43C0-89C1-CDB06E82531E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{700F90AB-7132-43C0-89C1-CDB06E82531E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{700F90AB-7132-43C0-89C1-CDB06E82531E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{700F90AB-7132-43C0-89C1-CDB06E82531E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{700F90AB-7132-43C0-89C1-CDB06E82531E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE35FDBA-FD41-4F11-A25B-14A8341D6FBF}
+	EndGlobalSection
+EndGlobal
