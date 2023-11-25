@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EvalTorchSharp": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
