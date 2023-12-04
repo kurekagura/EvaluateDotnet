@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvalSkiaSharp", "EvalSkiaSharp\EvalSkiaSharp.csproj", "{44030738-A94D-4315-A800-D30627D59FBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{44030738-A94D-4315-A800-D30627D59FBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44030738-A94D-4315-A800-D30627D59FBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44030738-A94D-4315-A800-D30627D59FBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44030738-A94D-4315-A800-D30627D59FBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {010FD7F0-CEC5-4394-9D53-7C99C6CEB4D5}
+	EndGlobalSection
+EndGlobal

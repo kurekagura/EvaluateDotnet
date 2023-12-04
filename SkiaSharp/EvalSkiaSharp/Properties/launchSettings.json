@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EvalSkiaSharp": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
