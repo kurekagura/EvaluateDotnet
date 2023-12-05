@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EvalOpenCvSharp": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
