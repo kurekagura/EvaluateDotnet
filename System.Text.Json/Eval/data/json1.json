@@ -1,0 +1,24 @@
+[
+    {
+        "Key": "MyPluginA",
+        "Value": {
+            "name_SelectedFigureItem": "a1",
+            "name_MyInteger": "1",
+            "name_MyDouble": "1.1"
+        }
+    },
+    {
+        "Key": "MyPluginB",
+        "Value": {
+            "name_MyCheckbox": "true"
+        }
+    },
+    {
+        "Key": "MyPluginA",
+        "Value": {
+            "name_SelectedFigureItem": "a2",
+            "name_MyInteger": "2",
+            "name_MyDouble": "2.2"
+        }
+    }
+]
