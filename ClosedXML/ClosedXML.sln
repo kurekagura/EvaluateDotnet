@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34928.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadCells", "ReadCells\ReadCells.csproj", "{02F60517-BFD0-4578-98DA-12B07AB8677C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02F60517-BFD0-4578-98DA-12B07AB8677C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F60517-BFD0-4578-98DA-12B07AB8677C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F60517-BFD0-4578-98DA-12B07AB8677C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F60517-BFD0-4578-98DA-12B07AB8677C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3258EDB4-6231-4B91-A20E-26BFA0DE7CFC}
+	EndGlobalSection
+EndGlobal
