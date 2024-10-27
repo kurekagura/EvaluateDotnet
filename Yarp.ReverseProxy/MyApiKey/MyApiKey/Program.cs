@@ -1,7 +1,6 @@
-// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+// YARP Middleware
+// https://microsoft.github.io/reverse-proxy/articles/middleware.html
 
-using MyApiKey.Client.Pages;
 using MyApiKey.Components;
 
 namespace MyApiKey;
@@ -34,15 +33,15 @@ public class Program
         app.UseStaticFiles();
         app.UseAntiforgery();
 
-        // APIキーを検証するミドルウェアをYARPの前に追加
-        // /api-vvへのリクエストに対してのみApiKeyMiddlewareを適用
-        //app.UseMiddleware<ApiKeyMiddleware>();
-        //app.MapWhen(
-        //    context => context.Request.Path.StartsWithSegments("/api/vv"),
-        //    builder => builder.UseMiddleware<ApiKeyMiddleware>()
-        //);
-        //Yarp
-        app.MapReverseProxy();
+        // APIキーを検証するミドルウェアをYARPパイプラインのミドルとして追加
+        // 多数ミドルが標準で提供されている=>要調査
+        app.MapReverseProxy(proxyPipeline =>
+        {
+            proxyPipeline.UseMiddleware<ApiKeyMiddleware>();
+            //proxyPipeline.UseSessionAffinity();
+            //proxyPipeline.UseLoadBalancing();
+            //proxyPipeline.UsePassiveHealthChecks();
+        });
 
         app.MapRazorComponents<App>()
             .AddInteractiveWebAssemblyRenderMode()
@@ -61,10 +60,8 @@ public class ApiKeyMiddleware
     public ApiKeyMiddleware(RequestDelegate next, IConfiguration configuration)
     {
         _next = next;
-
         // appsettings.jsonからExpectedApiKeysを取得し、HashSetに変換
-        _expectedApiKeys = configuration.GetSection("ExpectedApiKeys")
-                                        .Get<HashSet<string>>() ?? new();
+        _expectedApiKeys = configuration.GetSection("ExpectedApiKeys").Get<HashSet<string>>() ?? new();
     }
 
     public async Task InvokeAsync(HttpContext context)
