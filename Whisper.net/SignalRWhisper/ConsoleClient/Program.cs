@@ -17,22 +17,34 @@ internal class Program
             string host = config["whisperApi:host"] ?? throw new Exception();
             int? port = config.GetSection("whisperApi:port").Get<int?>();
             string path = config["whisperApi:path"] ?? string.Empty;
-            //var apiKey = config["whisperApi:apiKey"] ?? string.Empty;
+            string? apiKey = config["whisperApi:apiKey"];
 
             string url = $"http://{host}{(port == null ? string.Empty : $":{port}")}{(string.IsNullOrEmpty(path) ? "" : "/" + path)}";
             hubConnection = new HubConnectionBuilder()
-                .WithUrl(url)
+                //.WithUrl(url)
+                .WithUrl(url, options =>
+                {
+                    if (apiKey != null)
+                        options.Headers.Add("X-API-KEY", apiKey);
+                })
                 .WithAutomaticReconnect()
                 .Build();
 
-            await hubConnection.StartAsync();
+            try
+            {
+                await hubConnection.StartAsync();
+            }
+            catch (HttpRequestException)
+            {
+                throw;
+            }
 
             hubConnection.On<string>(nameof(ReceiveMessage), ReceiveMessage);
 
             //byte[] messageBytes = Encoding.UTF8.GetBytes("こんにちは");
 
-            string wavPath = ".input\\60s_16KHz.wav";
-            //string wavPath = ".input\\03s_16KHz.wav";
+            //string wavPath = ".input\\60s_16KHz.wav";
+            string wavPath = ".input\\03s_16KHz.wav";
 
             byte[] wavData = File.ReadAllBytes(wavPath);
 
