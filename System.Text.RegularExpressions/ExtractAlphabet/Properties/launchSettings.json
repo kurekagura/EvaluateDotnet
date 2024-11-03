@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ExtractAlphabet": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
