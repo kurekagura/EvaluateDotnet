@@ -5,13 +5,16 @@ namespace ExtractAlphabet;
 
 internal class Program
 {
+    //TODO:コンパイル時にして高速化
+    //[GeneratedRegex(@"[A-Z]?[a-z]+|[A-Z]+(?![a-z])")]
+    //private static partial Regex AlphabetAndCamelCaseRegex();
+
     static void Main(string[] args)
     {
-        var text = "私はAppleとOrangeが好き。Appleが一番、Orangeが二番です";
+        var text = "私はAppleとOrangeが好き。Appleが一番、Orangeが二番。AppleOrageもOrangeAppleもappleOrangeは嫌い。";
 
         // アルファベット単語の検出
         //var matches = Regex.Matches(text, @"[A-Za-z]+");
-
         //var list = new List<string>();
         //foreach (Match match in matches)
         //{
@@ -25,8 +28,10 @@ internal class Program
         //    return "{" + index + "}";
         //});
 
+        //string regex = @"[A-Za-z]+";
+        string regex = @"[A-Z]?[a-z]+|[A-Z]+(?![a-z])";　//アッパー・ローワーキャメルを分割
         var list = new List<string>();
-        string textTemplate = Regex.Replace(text, @"[A-Za-z]+", match =>
+        string textTemplate = Regex.Replace(text, regex, match =>
         {
             list.Add(match.Value);
             return $"{{{list.Count - 1}}}";
@@ -34,6 +39,7 @@ internal class Program
 
         string reText = string.Format(textTemplate, list.ToArray());
 
+        Console.WriteLine($"text = \"{text}\"");
         Console.WriteLine($"result = \"{textTemplate}\"");
         Console.WriteLine($"list = {string.Join(",", list)}");
         Console.WriteLine($"再構成 = \"{reText}\"");
