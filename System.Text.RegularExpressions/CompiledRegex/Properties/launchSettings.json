@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "CompiledRegex": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
