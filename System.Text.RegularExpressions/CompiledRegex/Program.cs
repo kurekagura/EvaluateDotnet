@@ -8,7 +8,7 @@ internal class Program
     static void Main(string[] args)
     {
         //var text = ".NET C#のregExやExpressionTreeは便利。Win32も使える。.NETの有名な言語はC#";
-        string text = File.ReadAllText("Text.txt", System.Text.Encoding.UTF8);
+        string text = File.ReadAllText(@"..\..\..\PrivateJunkData\20241107_Regex.txt", System.Text.Encoding.UTF8);
 
         var keywords = new List<string>(File.ReadAllLines("辞書.txt"));
         var myRegex = new MyRegex(keywords);
