@@ -1,5 +1,6 @@
 ﻿using System.Collections.Frozen;
 using System.Text.Json;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ConsoleApp;
@@ -8,20 +9,34 @@ internal class Program
 {
     static async Task Main(string[] args)
     {
-        var alphabetText = new List<string> { "I", "am", "a", "programmer" };
-
         var svcCollection = new ServiceCollection();
 
+        //IConfigurationRootは、IConfigurationの拡張版。Reload()、すべての構成プロバイダへアクセスできる、などの機能がある。
+        //それらを利用しない場合は、IConfigurationでOK
+        IConfiguration configuration = new ConfigurationBuilder()
+            .SetBasePath(Directory.GetCurrentDirectory())
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+            .Build();
+
+        svcCollection.AddSingleton<IConfiguration>(configuration);
+
+        //引数が不要なケースは型パラメータのみ指定で対応可能
         //svcCollection.AddSingleton<IAlphabetToKanaService, AlphabetToReadingRomanKatakana>();
 
         //引数が必要な場合、ファクトリメソッドを渡す
         svcCollection.AddSingleton<IAlphabetToKanaService>(provider =>
         {
-            string jsonStr = File.ReadAllText(".\\Alphabetローマ字平仮名読み辞書.json");
+            //未登録の場合、InvalidOperationExceptionが発生
+            var config = provider.GetRequiredService<IConfiguration>();
+            //未登録の場合、nullを戻す。判定後処理を行う場合に使用する
+            //var config = provider.GetService<IConfigurationRoot>();
+            string dicFile = config["Dictionary"] ?? throw new Exception("appsettings.jsonにDictionaryが定義されていません");
+            string jsonStr = File.ReadAllText(dicFile);
             Dictionary<char, string>? dic = JsonSerializer.Deserialize<Dictionary<char, string>>(jsonStr) ?? new();
             return new AlphabetToReadingRomanHirakana(dic);
         });
 
+        var alphabetText = new List<string> { "I", "am", "a", "programmer" };
         using (var sp = svcCollection.BuildServiceProvider())
         {
             var converter = sp.GetRequiredService<IAlphabetToKanaService>();
