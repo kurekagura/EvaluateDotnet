@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConsoleEF": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
