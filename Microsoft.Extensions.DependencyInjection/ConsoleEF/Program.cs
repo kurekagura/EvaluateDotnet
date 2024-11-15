@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using ConsoleEF.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -45,7 +46,11 @@ internal class Program
 
         try
         {
-            using var db = spProvider.GetRequiredService<SampleDbContext>();
+            //using var db = spProvider.GetRequiredService<SampleDbContext>();
+            var dbFactory = spProvider.GetRequiredService<IDbContextFactory<SampleDbContext>>();
+            using var db = dbFactory.CreateDbContext();
+            //await db.Database.MigrateAsync();
+
             db.Mylogs.Add(newLog);
             var count = await db.SaveChangesAsync();
             Console.WriteLine($"{count}件 Insertしました");
@@ -60,5 +65,21 @@ internal class Program
             Console.ReadKey();
         }
 
+    }
+}
+
+/// <summary>
+/// これを実装しておくとマイグレーションが機能する
+/// dotnet ef migrations add InitialCreate
+/// 接続文字列はAddDbContextFactoryから取得している？
+/// </summary>
+public class SampleDbContextFactory : IDesignTimeDbContextFactory<SampleDbContext>
+{
+    public SampleDbContext CreateDbContext(string[] args)
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<SampleDbContext>();
+        optionsBuilder.UseSqlServer("YourConnectionString");
+
+        return new SampleDbContext(optionsBuilder.Options);
     }
 }
