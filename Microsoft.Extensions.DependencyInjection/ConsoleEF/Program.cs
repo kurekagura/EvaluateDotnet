@@ -49,7 +49,8 @@ internal class Program
             //using var db = spProvider.GetRequiredService<SampleDbContext>();
             var dbFactory = spProvider.GetRequiredService<IDbContextFactory<SampleDbContext>>();
             using var db = dbFactory.CreateDbContext();
-            //await db.Database.MigrateAsync();
+            //テーブルが作成される
+            await db.Database.MigrateAsync();
 
             db.Mylogs.Add(newLog);
             var count = await db.SaveChangesAsync();
