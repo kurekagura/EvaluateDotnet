@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Kuromoji": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
