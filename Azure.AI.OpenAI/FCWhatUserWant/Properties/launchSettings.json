@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FCWhatUserWant": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
