@@ -22,6 +22,12 @@ namespace DashJS
             //https://learn.microsoft.com/en-us/dotnet/api/microsoft.web.webview2.core.corewebview2.setvirtualhostnametofoldermapping?view=webview2-dotnet-1.0.1938.49&WT.mc_id=WD-MVP-5001077
             webView.CoreWebView2.SetVirtualHostNameToFolderMapping("appassets", "assets", CoreWebView2HostResourceAccessKind.DenyCors);
             webView.Source = new Uri("https://appassets/index.html");
+
+            //F12起動するのと同じ、DevToolsウィンドウが開く
+            //webView.CoreWebView2.OpenDevToolsWindow();
+            //↓は何？
+            //webView.CoreWebView2.Settings.AreDevToolsEnabled = true;
+
         }
 
         private void WebView_CoreWebView2InitializationCompleted(object? sender, CoreWebView2InitializationCompletedEventArgs e)

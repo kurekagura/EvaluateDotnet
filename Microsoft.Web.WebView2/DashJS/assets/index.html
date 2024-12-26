@@ -27,10 +27,14 @@
     <div>
         <input id="totalTimeInput" type="time" value="00:00">
     </div>
-        <div>
+    <div>
         <video id="video" data-dashjs-player controls autoplay muted="muted"></video>
     </div>
+    <div>
+        <button id="myButton">クリックするとコンソールへ出力するよ</button>
+    </div>
     <script src="./dash.all.min.js"></script>
+    <script src="./myapp.js"></script>
     <script>
         const videoElement = document.getElementById('video');
         const totalTimeInput = document.getElementById('totalTimeInput');
