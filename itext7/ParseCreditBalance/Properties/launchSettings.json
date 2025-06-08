@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ParseCreditBalance": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
